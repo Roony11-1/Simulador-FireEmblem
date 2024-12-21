@@ -4,6 +4,7 @@
  */
 package vista;
 
+import controlador.SistemaColeccionUnidades;
 import modelo.clases.*;
 import modelo.Unidad;
 import utilidades.Utilidades;
@@ -14,10 +15,12 @@ import utilidades.Utilidades;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaPrincipal
-     */
-    public VentanaPrincipal() {
+    private SistemaColeccionUnidades coleccion = new SistemaColeccionUnidades();
+    // Variable que guardará la unidad temporalmente
+    private Unidad unidadTemp; 
+    
+    public VentanaPrincipal() 
+    {
         initComponents();
     }
 
@@ -45,9 +48,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtExpCrear = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtPvCrear = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtFueCrear = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtHabCrear = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtVelCrear = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtSueCrear = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtDefCrear = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtResCrear = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,22 +112,50 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel3.setText("Nivel:");
 
+        txtNivelCrear.setText("1");
+
         jLabel4.setText("Experiencia:");
+
+        txtExpCrear.setText("0");
 
         jLabel5.setText("Crecimientos:");
 
         jLabel6.setText("PV:");
 
-        jTextField1.setText("jTextField1");
+        txtPvCrear.setText("0");
 
         jLabel7.setText("Fuerza:");
 
-        jTextField2.setText("jTextField2");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtFueCrear.setText("0");
+        txtFueCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtFueCrearActionPerformed(evt);
             }
         });
+
+        jLabel8.setText("Habilidad:");
+
+        txtHabCrear.setText("0");
+
+        jLabel9.setText("Velocidad:");
+
+        txtVelCrear.setText("0");
+
+        jLabel10.setText("Suerte:");
+
+        txtSueCrear.setText("0");
+
+        jLabel11.setText("Defensa:");
+
+        txtDefCrear.setText("0");
+
+        jLabel12.setText("Resistencia:");
+
+        txtResCrear.setText("0");
+
+        jLabel13.setText("Un nivel sobre 1 provocara que la unidad suba de nivel");
+
+        jLabel14.setText("aumentando sus estadisticas");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,41 +164,70 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNombreCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNivelCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtExpCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbClaseCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel13)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtPvCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtNombreCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel11)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtNivelCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtExpCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 151, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(cbClaseCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnCrear))))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtDefCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtResCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtVelCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(114, 114, 114))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 11, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(98, 98, 98)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(txtFueCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtHabCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtSueCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnCrear))))
+                            .addComponent(jScrollPane1))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,29 +240,57 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(txtNivelCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(txtExpCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cbClaseCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(cbClaseCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCrear))
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtPvCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtHabCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)
+                            .addComponent(txtSueCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFueCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCrear)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(txtDefCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
+                            .addComponent(txtResCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(txtVelCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel14)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Crear Unidad", jPanel1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 626, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 239, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Buscar Unidad", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -206,7 +307,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        // TODO add your handling code here:
+    // Verifica si la unidad ha sido creada
+    if (unidadTemp != null) {
+        // Agrega la unidad al ArrayList
+        coleccion.agregarUnidad(unidadTemp);
+
+        // Opcionalmente, muestra un mensaje indicando que se ha creado la unidad
+        javax.swing.JOptionPane.showMessageDialog(this, "Unidad creada exitosamente.");
+
+        // Limpiar la variable temporal para permitir una nueva creación si es necesario
+        unidadTemp = null;
+    } else {
+        // Si no hay ninguna unidad temporal, muestra un mensaje de advertencia
+        javax.swing.JOptionPane.showMessageDialog(this, "Debes seleccionar una clase y completar los campos antes de crear la unidad.");
+    }
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void cbClaseCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClaseCrearActionPerformed
@@ -227,9 +341,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String nombre = txtNombreCrear.getText().trim();
         String nivel = txtNivelCrear.getText().trim();
         String experiencia = txtExpCrear.getText().trim();
+        String pv = txtPvCrear.getText().trim();
+        String fue = txtFueCrear.getText().trim();
+        String hab = txtHabCrear.getText().trim();
+        String vel = txtVelCrear.getText().trim();
+        String sue = txtSueCrear.getText().trim();
+        String def = txtDefCrear.getText().trim();
+        String res = txtResCrear.getText().trim();
 
         // Valida que todos los campos estén llenos
-        if (nombre.isBlank() || nivel.isBlank() || experiencia.isBlank()) {
+        if (nombre.isBlank() || nivel.isBlank() || experiencia.isBlank() || pv.isBlank() ||
+                fue.isBlank() || hab.isBlank() || vel.isBlank() || vel.isBlank() || sue.isBlank() ||
+                def.isBlank() || res.isBlank()) 
+        {
             javax.swing.JOptionPane.showMessageDialog(this, "Debes llenar todos los campos.");
             cbClaseCrear.setSelectedIndex(0);
             return;
@@ -238,15 +362,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // Convierte los valores de nivel y experiencia a enteros, con manejo de errores
         int cantNivel;
         int cantExp;
+        int cantPv, cantFue, cantHab, cantVel, cantSue, cantDef, cantRes;
 
         try 
         {
             cantNivel = Integer.parseInt(nivel);
             cantExp = Integer.parseInt(experiencia);
+            cantPv = Integer.parseInt(pv);
+            cantFue = Integer.parseInt(fue);
+            cantHab = Integer.parseInt(hab);
+            cantVel = Integer.parseInt(vel);
+            cantSue = Integer.parseInt(sue);
+            cantDef = Integer.parseInt(def);
+            cantRes = Integer.parseInt(res);
         } 
         catch (NumberFormatException e) 
         {
-            javax.swing.JOptionPane.showMessageDialog(this, "El nivel y la experiencia deben ser números enteros.");
+            javax.swing.JOptionPane.showMessageDialog(this, "Los valores deben ser números enteros.");
             return;
         }
 
@@ -279,8 +411,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         uni.getClase().getNivel().setNivel(cantNivel);
         uni.getClase().getNivel().setExperiencia(cantExp);
         
-        // Las estadisticas base son antes de manejar lso crecimientos por nivel
-        // Aqui subira las estadisticas si es necesario (Crear una unidad sobre nivel 1)
+        // Asigna los crecimientos a la unidad
+        uni.getClase().getCrecimiento().setCrePv(cantPv);
+        uni.getClase().getCrecimiento().setCreFue(cantFue);
+        uni.getClase().getCrecimiento().setCreHab(cantHab);
+        uni.getClase().getCrecimiento().setCreVel(cantVel);
+        uni.getClase().getCrecimiento().setCreSue(cantSue);
+        uni.getClase().getCrecimiento().setCreDef(cantDef);
+        uni.getClase().getCrecimiento().setCreRes(cantRes);
+        
+        // Subir las estadísticas de acuerdo con el nivel actual.
+        int nivelActual = uni.getClase().getNivel().getNivel();
+        if (nivelActual > 1) 
+        {
+            System.out.println(uni.getNombre() + " ha subido al nivel " + nivelActual);
+
+            // Llamamos a subirNivel tantas veces como niveles tenga la unidad.
+            // Se pueden hacer ajustes más avanzados si los niveles se manejan de otra forma.
+            for (int i = 1; i < nivelActual; i++) {
+                uni.getClase().subirNivel();
+            }
+        }
 
         // Actualiza la tabla con los datos de la unidad
         javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tbCrearClase.getModel();
@@ -301,11 +452,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             uni.getClase().getEstadisticas().getDef(),
             uni.getClase().getEstadisticas().getRes()
         });
+        
+        unidadTemp = uni;
     }//GEN-LAST:event_cbClaseCrearActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtFueCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFueCrearActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtFueCrearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -346,20 +499,33 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCrear;
     private javax.swing.JComboBox<String> cbClaseCrear;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable tbCrearClase;
+    private javax.swing.JTextField txtDefCrear;
     private javax.swing.JTextField txtExpCrear;
+    private javax.swing.JTextField txtFueCrear;
+    private javax.swing.JTextField txtHabCrear;
     private javax.swing.JTextField txtNivelCrear;
     private javax.swing.JTextField txtNombreCrear;
+    private javax.swing.JTextField txtPvCrear;
+    private javax.swing.JTextField txtResCrear;
+    private javax.swing.JTextField txtSueCrear;
+    private javax.swing.JTextField txtVelCrear;
     // End of variables declaration//GEN-END:variables
 }

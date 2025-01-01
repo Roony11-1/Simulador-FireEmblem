@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vista;
 
 import controlador.SistemaColeccionUnidades;
+import java.util.ArrayList;
+import java.util.Arrays;
 import modelo.clases.*;
 import modelo.Unidad;
 import utilidades.Utilidades;
@@ -33,7 +31,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jpBuscar = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNombreCrear = new javax.swing.JTextField();
@@ -63,15 +61,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtResCrear = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        btnGenerarCrear = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbBuscarUnidad = new javax.swing.JTable();
+        cbBuscarUnidad = new javax.swing.JComboBox<>();
+        btnBuscarUnidad = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jpBuscar.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jpBuscarStateChanged(evt);
+            }
+        });
 
         jLabel1.setText("Nombre:");
 
         jLabel2.setText("Clase:");
 
-        cbClaseCrear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(- Selecciona la clase -)", "Mirmidon", "Guerrero" }));
+        cbClaseCrear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(- Selecciona la clase -)", "Mirmidon", "Espadachin", "Guerrero" }));
         cbClaseCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbClaseCrearActionPerformed(evt);
@@ -123,6 +137,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel6.setText("PV:");
 
         txtPvCrear.setText("0");
+        txtPvCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPvCrearActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Fuerza:");
 
@@ -157,6 +176,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel14.setText("aumentando sus estadisticas");
 
+        btnGenerarCrear.setText("Generar");
+        btnGenerarCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarCrearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -166,26 +192,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNombreCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNivelCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtExpCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbClaseCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel13)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtPvCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,33 +206,54 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtVelCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(114, 114, 114))
+                                .addComponent(txtVelCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNombreCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNivelCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtExpCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbClaseCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel13))))
+                        .addGap(114, 139, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnGenerarCrear)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(98, 98, 98)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(txtFueCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(98, 98, 98)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(33, 33, 33)
-                                        .addComponent(txtFueCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtHabCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtSueCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnCrear))))
-                            .addComponent(jScrollPane1))
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtHabCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtSueCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 109, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCrear)))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -272,55 +299,144 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(jLabel14)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(btnGenerarCrear)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Crear Unidad", jPanel1);
+        jpBuscar.addTab("Crear Unidad", jPanel1);
+
+        tbBuscarUnidad.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Nivel", "Experiencia", "Clase", "Descripción", "PV", "Fuerza", "Habilidad", "Velocidad", "Suerte", "Defensa", "Resistencia"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tbBuscarUnidad);
+
+        cbBuscarUnidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(- Clase a Buscar -)", "Mirmidon", "Espadachin", "Guerrero" }));
+
+        btnBuscarUnidad.setText("Buscar");
+        btnBuscarUnidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarUnidadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 626, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cbBuscarUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBuscarUnidad)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 239, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbBuscarUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarUnidad))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTabbedPane1.addTab("Buscar Unidad", jPanel2);
+        jpBuscar.addTab("Buscar Unidad", jPanel2);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(- Selecciona una unidad -)" }));
+
+        jLabel15.setText("Unidad - Nivel");
+
+        jLabel16.setText("Promocionar le asignara una clase avanzada a la unidad y volvera a ser nivel 1 aumentando sus estadisticas");
+
+        jButton1.setText("Promocionar");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(116, 116, 116)
+                        .addComponent(jButton1))
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel16)
+                .addContainerGap(201, Short.MAX_VALUE))
+        );
+
+        jpBuscar.addTab("Promocionar Unidad", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jpBuscar)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jpBuscar)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-    // Verifica si la unidad ha sido creada
-    if (unidadTemp != null) {
-        // Agrega la unidad al ArrayList
-        coleccion.agregarUnidad(unidadTemp);
+        // Verifica si la unidad ha sido creada
+        if (unidadTemp != null && !unidadTemp.getNombre().isBlank()) 
+        {
+            // Agrega la unidad al ArrayList
+            coleccion.agregarUnidad(unidadTemp);
 
-        // Opcionalmente, muestra un mensaje indicando que se ha creado la unidad
-        javax.swing.JOptionPane.showMessageDialog(this, "Unidad creada exitosamente.");
-
-        // Limpiar la variable temporal para permitir una nueva creación si es necesario
-        unidadTemp = null;
-    } else {
-        // Si no hay ninguna unidad temporal, muestra un mensaje de advertencia
-        javax.swing.JOptionPane.showMessageDialog(this, "Debes seleccionar una clase y completar los campos antes de crear la unidad.");
-    }
+            // Opcionalmente, muestra un mensaje indicando que se ha creado la unidad
+            javax.swing.JOptionPane.showMessageDialog(this, "Unidad creada exitosamente.");
+        } 
+        else 
+        {
+            // Si no hay ninguna unidad temporal, muestra un mensaje de advertencia
+            javax.swing.JOptionPane.showMessageDialog(this, "Debes seleccionar una clase y completar los campos antes de crear la unidad.");
+        }
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void cbClaseCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClaseCrearActionPerformed
@@ -349,15 +465,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String def = txtDefCrear.getText().trim();
         String res = txtResCrear.getText().trim();
 
-        // Valida que todos los campos estén llenos
-        if (nombre.isBlank() || nivel.isBlank() || experiencia.isBlank() || pv.isBlank() ||
-                fue.isBlank() || hab.isBlank() || vel.isBlank() || vel.isBlank() || sue.isBlank() ||
-                def.isBlank() || res.isBlank()) 
-        {
-            javax.swing.JOptionPane.showMessageDialog(this, "Debes llenar todos los campos.");
-            cbClaseCrear.setSelectedIndex(0);
-            return;
-        }
+//        // Valida que todos los campos estén llenos
+//        if (nombre.isBlank() || nivel.isBlank() || experiencia.isBlank() || pv.isBlank() ||
+//                fue.isBlank() || hab.isBlank() || vel.isBlank() || vel.isBlank() || sue.isBlank() ||
+//                def.isBlank() || res.isBlank()) 
+//        {
+//            javax.swing.JOptionPane.showMessageDialog(this, "Debes llenar todos los campos.");
+//            cbClaseCrear.setSelectedIndex(0);
+//            return;
+//        }
 
         // Convierte los valores de nivel y experiencia a enteros, con manejo de errores
         int cantNivel;
@@ -460,6 +576,92 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFueCrearActionPerformed
 
+    private void txtPvCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPvCrearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPvCrearActionPerformed
+
+    private void btnGenerarCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarCrearActionPerformed
+        cbClaseCrearActionPerformed(evt);
+    }//GEN-LAST:event_btnGenerarCrearActionPerformed
+
+    private void btnBuscarUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUnidadActionPerformed
+        // Obtener la clase seleccionada del ComboBox
+        String selected = cbBuscarUnidad.getSelectedItem().toString();
+
+        if (cbBuscarUnidad.getSelectedIndex() == 0) 
+        {
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, selecciona una clase válida.");
+            return;
+        }
+
+        // Llamar al método para listar unidades de la clase seleccionada
+        ArrayList<Unidad> lista = coleccion.listarUnidadPorClase(selected);
+
+        // Validar si la lista está vacía
+        if (lista.isEmpty()) 
+        {
+            javax.swing.JOptionPane.showMessageDialog(this, "No hay unidades que sean de la clase seleccionada");
+            return;
+        }
+
+        // Actualiza la tabla con los datos de las unidades
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tbBuscarUnidad.getModel();
+        modelo.setRowCount(0); // Limpiar la tabla
+
+        for (Unidad uni : lista) 
+        {
+            modelo.addRow(new Object[] 
+            {
+                uni.getNombre(),
+                uni.getClase().getNivel().getNivel(),
+                uni.getClase().getNivel().getExperiencia(),
+                uni.getClase().getNombre(),
+                uni.getClase().getDescripcion(),
+                uni.getClase().getEstadisticas().getPv(),
+                uni.getClase().getEstadisticas().getFue(),
+                uni.getClase().getEstadisticas().getHab(),
+                uni.getClase().getEstadisticas().getVel(),
+                uni.getClase().getEstadisticas().getSue(),
+                uni.getClase().getEstadisticas().getDef(),
+                uni.getClase().getEstadisticas().getRes()
+            });
+        }
+    }//GEN-LAST:event_btnBuscarUnidadActionPerformed
+
+    private void jpBuscarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jpBuscarStateChanged
+        // Cuando se selecciona la 2da pestaña
+        ArrayList<Unidad> lista = coleccion.getUnidades();
+        
+        if (jpBuscar.getSelectedIndex() == 1)
+        {
+            if (coleccion.isEmpty())
+                return;
+            
+            // Actualiza la tabla con los datos de la unidad
+            javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tbBuscarUnidad.getModel();
+            modelo.setRowCount(0); // Limpia la tabla
+            
+            for (Unidad uni : lista) 
+            {
+                modelo.addRow(new Object[] 
+                {
+                    uni.getNombre(),
+                    uni.getClase().getNivel().getNivel(),
+                    uni.getClase().getNivel().getExperiencia(),
+                    uni.getClase().getNombre(),
+                    uni.getClase().getDescripcion(),
+                    uni.getClase().getEstadisticas().getPv(),
+                    uni.getClase().getEstadisticas().getFue(),
+                    uni.getClase().getEstadisticas().getHab(),
+                    uni.getClase().getEstadisticas().getVel(),
+                    uni.getClase().getEstadisticas().getSue(),
+                    uni.getClase().getEstadisticas().getDef(),
+                    uni.getClase().getEstadisticas().getRes()
+                });
+            }
+        }
+    }//GEN-LAST:event_jpBuscarStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -471,7 +673,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -496,14 +698,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarUnidad;
     private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnGenerarCrear;
+    private javax.swing.JComboBox<String> cbBuscarUnidad;
     private javax.swing.JComboBox<String> cbClaseCrear;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -514,8 +723,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jpBuscar;
+    private javax.swing.JTable tbBuscarUnidad;
     private javax.swing.JTable tbCrearClase;
     private javax.swing.JTextField txtDefCrear;
     private javax.swing.JTextField txtExpCrear;
